@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DeployNoTests" type="AZURE_SPRING_CLOUD_SUPPORT" factoryName="Deploy Spring Cloud Services">
+    <App id="/subscriptions/c8fd276f-9b1c-44ca-8ea6-443f7549f267/resourceGroups/arf_group/providers/Microsoft.AppPlatform/Spring/spring-app-1/apps/demo" />
+    <Artifact identifier="com.lacouf:react-todo-springboot:0.0.1-SNAPSHOT" />
+    <method v="2">
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="package -DskipTests" />
+    </method>
+  </configuration>
+</component>

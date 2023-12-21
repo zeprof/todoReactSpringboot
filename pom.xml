@@ -22,6 +22,18 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
@@ -141,9 +153,13 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <copy todir="${project.build.directory}/classes/public">
-                                    <fileset dir="${project.basedir}/basic-frontend-app/build"/>
+                                <copy todir="${project.build.directory}/classes/static">
+                                    <fileset dir="${project.basedir}/basic-frontend-app/build">
+                                        <filename regex="^(?!index.html)" />
+                                    </fileset>
                                 </copy>
+                                <copy file="${project.basedir}/basic-frontend-app/build/index.html"
+                                      tofile="${project.build.directory}/classes/templates/index.html" />
                             </target>
                         </configuration>
                         <goals>

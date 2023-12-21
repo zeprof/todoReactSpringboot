@@ -9,6 +9,7 @@ import AddTask from './components/AddTask';
 import About from './components/About';
 
 function App() {
+  const apiUrl = document.getElementById("api_url").innerHTML
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
 
@@ -22,19 +23,19 @@ function App() {
   // C'est comme le lifecycle event 'ComponentDidMount'
 
   const fetchTasks = async () => {
-    const res = await fetch(process.env.REACT_APP_API_URL + '/todos')
+    const res = await fetch(apiUrl + '/todos')
     const data = await res.json()
     return data
   }
 
-  const fetchTask = async(id) => {
-    const res = await fetch(process.env.REACT_APP_API_URL + `/todos/${id}`)
+  const fetchTask = async(id) => {  
+    const res = await fetch(apiUrl + `/todos/${id}`)
     const data = await res.json()
     return data
   }
 
   const addTask = async (task) => {
-    const res = await fetch(process.env.REACT_APP_API_URL + '/todos',
+    const res = await fetch(apiUrl + '/todos',
     {
       method: 'POST',
       headers: {
@@ -52,7 +53,7 @@ function App() {
   }
 
   const deleteTask = async (id) => {
-    await fetch(process.env.REACT_APP_API_URL + `/todos/${id}`, {
+    await fetch(apiUrl + `/todos/${id}`, {
       method: 'DELETE'
     })
     setTasks(tasks.filter((task) => task.id !== id))
@@ -63,7 +64,7 @@ function App() {
     const updTask = await {...taskToToggle, 
       reminder: !taskToToggle.reminder}
 
-    await fetch(process.env.REACT_APP_API_URL + `/todos/${id}`,
+    await fetch(apiUrl + `/todos/${id}`,
     {
       method: 'PUT',
       headers: {
