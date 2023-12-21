@@ -82,9 +82,13 @@ Il faut également ajouter dans la section 'plugin' du pom
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <copy todir="${project.build.directory}/classes/public">
-                                    <fileset dir="${project.basedir}/basic-frontend-app/build"/>
+                                <copy todir="${project.build.directory}/classes/static">
+                                    <fileset dir="${project.basedir}/basic-frontend-app/build">
+                                        <filename regex="^(?!index.html)" />
+                                    </fileset>
                                 </copy>
+                                <copy file="${project.basedir}/basic-frontend-app/build/index.html"
+                                      tofile="${project.build.directory}/classes/templates/index.html" />
                             </target>
                         </configuration>
                         <goals>
@@ -95,4 +99,11 @@ Il faut également ajouter dans la section 'plugin' du pom
             </plugin>
         </plugins>
 ```
+>Sur le déploiement Azure, il faut penser à mettre le profil Spring Boot '-Dspring.profiles.active=azure'
+>Dans la configuration de l'app déployée.
+
+>On peut maintenant utiliser des variables définies dans application.properties que l'on peut utilier dans React.
+> Voir 'index.html' (De react) et IndexController de SpringBoot.  À noter que index.html doit être déployé dans /templates de SpringBoot.
+
+>On peut rouler mvn package -DskipTests pour déployer l'appliation React à même SpringBoot. Tout devient donc accessible par la même addresse:port (ex: localohost:8080)
 
