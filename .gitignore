@@ -33,3 +33,10 @@ build/
 .vscode/
 
 /node_modules
+
+# terraform
+**/.terraform
+.terraform*
+terraform.*.backup
+*.tfstate
+*.tfstate.*
