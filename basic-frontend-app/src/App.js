@@ -9,7 +9,13 @@ import AddTask from './components/AddTask';
 import About from './components/About';
 
 function App() {
-  const apiUrl = document.getElementById("api_url").innerHTML
+  let apiUrl = document.getElementById("api_url").innerHTML
+  console.log("apiUrl: ", apiUrl)
+  if (apiUrl === '') {
+    apiUrl = 'http://localhost:8080'
+    console.log("apiUrl: ", apiUrl)
+  }
+
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
 
