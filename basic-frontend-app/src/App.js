@@ -30,13 +30,13 @@ function App() {
 
   const fetchTasks = async () => {
     const res = await fetch(apiUrl + '/todos')
-    const data = await res.json()
+    const data = res.json()
     return data
   }
 
   const fetchTask = async(id) => {  
     const res = await fetch(apiUrl + `/todos/${id}`)
-    const data = await res.json()
+    const data = res.json()
     return data
   }
 
@@ -49,7 +49,7 @@ function App() {
       },
       body: JSON.stringify(task)
     })
-    const data = await res.json()
+    const data = res.json()
     setTasks([...tasks, data])
 
     
