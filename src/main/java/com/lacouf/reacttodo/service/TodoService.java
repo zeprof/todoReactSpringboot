@@ -2,6 +2,8 @@ package com.lacouf.reacttodo.service;
 
 import com.lacouf.reacttodo.model.Todo;
 import com.lacouf.reacttodo.repos.TodoRepositoryJpa;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.Optional;
 
 @Service
 public class TodoService {
+
+    Logger logger = LoggerFactory.getLogger(TodoService.class);
 
     public TodoRepositoryJpa repository;
 
@@ -25,6 +29,7 @@ public class TodoService {
     }
 
     public Optional<Todo> findById(Long id) {
+        logger.debug("message qui n'apparait que sur le debug log level");
         return repository.findById(id);
     }
 

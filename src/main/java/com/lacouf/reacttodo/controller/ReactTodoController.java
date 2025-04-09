@@ -31,7 +31,7 @@ public class ReactTodoController {
     @GetMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Todo> getTodo(@PathVariable Long id) {
-        logger.info("getAllTodos");
+        logger.info("getAllTodos id: " + id);
         return todoService.findById(id)
                 .map(todo -> ResponseEntity.status(HttpStatus.CREATED).body(todo))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
