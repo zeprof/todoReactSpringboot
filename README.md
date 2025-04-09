@@ -2,6 +2,12 @@
 
 ## Todo App with React and Spring Boot
 
+Contient un git submodule avec react-tasktracker-vite. 
+Ceci permet d'avoir 2 repos différents à même un projet IntelliJ.
+```
+git submodule add git@github-cegep:zeprof/react-tasktracker-vite.git react-tasktracker-vite
+```
+
 # Pour connecter sur la base de données Azure, suivre les instructions suivantes:
 
 https://learn.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-data-jpa-with-azure-postgresql?toc=%2Fazure%2Fpostgresql%2Ftoc.json&bc=%2Fazure%2Fbread%2Ftoc.json&tabs=passwordless%2Cservice-connector&pivots=postgresql-passwordless-flexible-server

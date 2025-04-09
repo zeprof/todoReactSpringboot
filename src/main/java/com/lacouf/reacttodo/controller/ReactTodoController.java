@@ -22,14 +22,14 @@ public class ReactTodoController {
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<List<Todo>> getAllTodos() {
         logger.info("getAllTodos");
         return ResponseEntity.ok().body(todoService.getAllTodos());
     }
 
     @GetMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Todo> getTodo(@PathVariable Long id) {
         logger.info("getAllTodos id: " + id);
         return todoService.findById(id)
@@ -38,7 +38,7 @@ public class ReactTodoController {
     }
 
     @PostMapping
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Todo> createTodo(@RequestBody Todo newTodo) {
         logger.info("post - createTodo " + newTodo);
         return todoService.saveTodo(newTodo)
@@ -47,7 +47,7 @@ public class ReactTodoController {
     }
 
     @PutMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Todo> updateTodo(@RequestBody Todo newTodo, @PathVariable Long id) {
         logger.info("update - createTodo " + newTodo);
         return todoService.saveTodo(newTodo)
@@ -56,7 +56,7 @@ public class ReactTodoController {
     }
 
     @DeleteMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Todo> deleteTodo(@PathVariable Long id) {
         logger.info("delete - createTodo " + id);
         todoService.delete(id);

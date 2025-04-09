@@ -30,7 +30,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.3.232</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -93,82 +92,82 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.15.1</version>
-                <configuration>
-                    <workingDirectory>basic-frontend-app</workingDirectory>
-                    <installDirectory>target</installDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v21.1.0</nodeVersion>
-                            <npmVersion>10.2.0</npmVersion>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm run build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>run build</arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <target>
-                                <copy todir="${project.build.directory}/classes/static">
-                                    <fileset dir="${project.basedir}/basic-frontend-app/build">
-                                        <filename regex="^(?!index.html)" />
-                                    </fileset>
-                                </copy>
-                                <copy file="${project.basedir}/basic-frontend-app/build/index.html"
-                                      tofile="${project.build.directory}/classes/templates/index.html" />
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>com.github.eirslett</groupId>-->
+<!--                <artifactId>frontend-maven-plugin</artifactId>-->
+<!--                <version>1.15.1</version>-->
+<!--                <configuration>-->
+<!--                    <workingDirectory>basic-frontend-app</workingDirectory>-->
+<!--                    <installDirectory>target</installDirectory>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>install node and npm</id>-->
+<!--                        <goals>-->
+<!--                            <goal>install-node-and-npm</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <nodeVersion>v21.1.0</nodeVersion>-->
+<!--                            <npmVersion>10.2.0</npmVersion>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>npm install</id>-->
+<!--                        <goals>-->
+<!--                            <goal>npm</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <arguments>install</arguments>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>npm run build</id>-->
+<!--                        <goals>-->
+<!--                            <goal>npm</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <arguments>run build</arguments>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <artifactId>maven-antrun-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>generate-resources</phase>-->
+<!--                        <configuration>-->
+<!--                            <target>-->
+<!--                                <copy todir="${project.build.directory}/classes/static">-->
+<!--                                    <fileset dir="${project.basedir}/basic-frontend-app/build">-->
+<!--                                        <filename regex="^(?!index.html)" />-->
+<!--                                    </fileset>-->
+<!--                                </copy>-->
+<!--                                <copy file="${project.basedir}/basic-frontend-app/build/index.html"-->
+<!--                                      tofile="${project.build.directory}/classes/templates/index.html" />-->
+<!--                            </target>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 
 </project>

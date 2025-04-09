@@ -21,6 +21,7 @@ public class ReactTodoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        TcpServer.createTcpServer("todos");
         //repository.deleteAll();
 
         // save a couple of customers
