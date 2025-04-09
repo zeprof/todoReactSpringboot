@@ -1,0 +1,3 @@
+[submodule "react-tasktracker-vite"]
+	path = react-tasktracker-vite
+	url = git@github-cegep:zeprof/react-tasktracker-vite.git
