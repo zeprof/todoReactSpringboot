@@ -32,18 +32,20 @@ public class ReactTodoController {
     @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Todo> getTodo(@PathVariable Long id) {
         logger.info("getAllTodos id: " + id);
-        return todoService.findById(id)
+        ResponseEntity<Todo> todoResponseEntity = todoService.findById(id)
                 .map(todo -> ResponseEntity.status(HttpStatus.CREATED).body(todo))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+        return todoResponseEntity;
     }
 
     @PostMapping
     @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Todo> createTodo(@RequestBody Todo newTodo) {
         logger.info("post - createTodo " + newTodo);
-        return todoService.saveTodo(newTodo)
+        ResponseEntity<Todo> todoResponseEntity = todoService.saveTodo(newTodo)
                 .map(todo -> ResponseEntity.status(HttpStatus.CREATED).body(todo))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        return todoResponseEntity;
     }
 
     @PutMapping("/{id}")
