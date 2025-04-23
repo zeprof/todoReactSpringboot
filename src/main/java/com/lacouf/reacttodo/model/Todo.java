@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 @Getter
@@ -12,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @Builder
+@EqualsAndHashCode
 @Entity
 public class Todo {
     @Id

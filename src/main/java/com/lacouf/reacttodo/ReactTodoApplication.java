@@ -25,17 +25,21 @@ public class ReactTodoApplication implements CommandLineRunner {
         //repository.deleteAll();
 
         // save a couple of customers
-        repository.save(Todo.builder()
-                        .description("Todo1")
-                        .zedate("Hier")
-                        .reminder(false)
-                        .build());
+        try {
+            repository.save(Todo.builder()
+                            .description("Todo1")
+                            .zedate("Hier")
+                            .reminder(false)
+                            .build());
 
-        repository.save(Todo.builder()
-                .description("Todo2")
-                .zedate("Aujourd'hui")
-                .reminder(true)
-                .build());
+            repository.save(Todo.builder()
+                    .description("Todo2")
+                    .zedate("Aujourd'hui")
+                    .reminder(true)
+                    .build());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         // fetch all todo
         System.out.println("Todos avec findAll():");
