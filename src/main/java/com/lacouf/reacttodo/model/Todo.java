@@ -4,14 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Min;
 import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
 @EqualsAndHashCode
 @Entity
@@ -23,6 +21,12 @@ public class Todo {
     private String description;
     private String zedate;
     private boolean reminder;
+
+    public Todo(String description, String zedate, boolean reminder) {
+        this.description = description;
+        this.zedate = zedate;
+        this.reminder = reminder;
+    }
 
     public void setId(Long id) {
         this.id = id;

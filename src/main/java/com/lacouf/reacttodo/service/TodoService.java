@@ -14,14 +14,19 @@ public class TodoService {
 
     Logger logger = LoggerFactory.getLogger(TodoService.class);
 
-    public TodoRepositoryJpa repository;
+    public final TodoRepositoryJpa repository;
 
     public TodoService(TodoRepositoryJpa repository) {
         this.repository = repository;
     }
 
-    public List<Todo> getAllTodos() {
-        return repository.findAll();
+    public List<Todo> getAllTodosAndSetRemindersToFalse() {
+        List<Todo> todos = repository.findAll();
+        List<Todo> list = todos.stream()
+                .map(todo -> new Todo(todo.getId(), todo.getDescription(),
+                        todo.getZedate(), false))
+                .toList();
+        return list;
     }
 
     public Optional<Todo> saveTodo(Todo todo) {

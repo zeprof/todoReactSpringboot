@@ -10,9 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TodoServiceTest {
@@ -24,16 +25,37 @@ public class TodoServiceTest {
     private TodoService service;
 
     @Test
-    public void testGetAllTodos() {
+    public void testGetAllTodosAndSetRemindersToFalse() {
         // Arrange
         when(repository.findAll()).thenReturn(getListOfTodos());
 
         // Act
-        final List<Todo> allTodos = service.getAllTodos();
+        List<Todo> allTodos = service.getAllTodosAndSetRemindersToFalse();
 
         // Assert
         assertThat(allTodos.size()).isEqualTo(3);
         assertThat(allTodos.get(0).getDescription()).isEqualTo("todo1");
+
+        assertThat(allTodos.get(0).isReminder()).isFalse();
+        assertThat(allTodos.get(1).isReminder()).isFalse();
+        assertThat(allTodos.get(2).isReminder()).isFalse();
+
+        verify(repository, times(1)).findAll();
+    }
+
+    @Test
+    void testSaveTodo1() {
+        // Arrange
+        Todo todoToSave = new Todo("todo1", "Aujourd'hui", true);
+        Todo todoToReturn = new Todo(1l, "todo1", "Aujourd'hui", true);
+        when(repository.save(todoToSave)).thenReturn(todoToReturn);
+
+        // Act
+        Optional<Todo> todoOptional = service.saveTodo(todoToSave);
+        Todo todoResponse = todoOptional.get();
+
+        // Assert
+        assertThat(todoResponse.getId()).isEqualTo(1L);
     }
 
     private List<Todo> getListOfTodos() {
@@ -42,7 +64,7 @@ public class TodoServiceTest {
                 .id(1L)
                 .description("todo1")
                 .zedate("Aujourd'hui")
-                .reminder(false)
+                .reminder(true)
                 .build());
         todoList.add(Todo.builder()
                 .id(1L)
@@ -54,7 +76,7 @@ public class TodoServiceTest {
                 .id(3L)
                 .description("todo3")
                 .zedate("Demain")
-                .reminder(false)
+                .reminder(true)
                 .build());
         return todoList;
     }

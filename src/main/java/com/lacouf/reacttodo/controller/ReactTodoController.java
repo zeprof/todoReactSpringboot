@@ -25,7 +25,7 @@ public class ReactTodoController {
     @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<List<Todo>> getAllTodos() {
         logger.info("getAllTodos");
-        return ResponseEntity.ok().body(todoService.getAllTodos());
+        return ResponseEntity.ok().body(todoService.getAllTodosAndSetRemindersToFalse());
     }
 
     @GetMapping("/{id}")
@@ -53,8 +53,8 @@ public class ReactTodoController {
     public ResponseEntity<Todo> updateTodo(@RequestBody Todo newTodo, @PathVariable Long id) {
         logger.info("update - createTodo " + newTodo);
         return todoService.saveTodo(newTodo)
-                .map(todo -> ResponseEntity.status(HttpStatus.CREATED).body(todo))
-                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+                .map(todo -> ResponseEntity.ok().body(todo))
+                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
     }
 
     @DeleteMapping("/{id}")
